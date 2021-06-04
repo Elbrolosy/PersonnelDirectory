@@ -19,6 +19,7 @@ public class PersonnelDirectory
    {
         Personnel per = new Personnel();
         PersonnelUI personnelUI = new PersonnelUI();
+        PersonnelFactory personnelFactory = new PersonnelFactory();
         Scanner scan = new Scanner(System.in);
         String firstN, lastN, middleN;
         int empID;
@@ -43,21 +44,7 @@ public class PersonnelDirectory
             switch(choice)
             {
                 case 1:
-                    System.out.println("Enter first name: ");
-                    firstN = scan.nextLine();
-                    System.out.println("Enter last name: ");
-                    lastN = scan.nextLine();
-                    System.out.println("Enter middle name: ");
-                    middleN = scan.nextLine();
-
-                    System.out.println("Enter empploy id : ");
-                    empID = scan.nextInt();
-                    System.out.println("Enter base salary" );
-                    salary = scan.nextDouble();
-                    scan.nextLine();
-
-                    Employee e1  = new Employee(lastN, firstN, middleN, empID, salary);
-
+                    Employee e1 = (Employee)personnelFactory.getPerson(PersonTypes.Employee);
 
                     per.addPersonnel(e1);
 
@@ -83,7 +70,7 @@ public class PersonnelDirectory
                     }else
                     {
                         System.out.println("not found");
-                        Person p1  = new Person(lastN, firstN, " ");
+                        Person p1 = personnelFactory.getPerson(PersonTypes.Person, firstN, lastN, " ");
                         per.addPersonnel(p1);
                     }
 
